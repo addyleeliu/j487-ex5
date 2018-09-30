@@ -74,9 +74,12 @@ function buildTable(array) {
 
 buildTable(players);
 
-/*
-EXTRA CREDIT CHALLENGE (5 POINTS): Write a function that compares the list above with the list below, finds the players that made the All-State team, and displays a message with the results: "Congratulations to Springfield's 2018 North Carolina All-State honorees: ____." Display the message in a div below the table.
-Hint: You need two loops, one of which will be 'nested'.*/
+/* EXTRA CREDIT CHALLENGE (5 POINTS):
+      Compare the list above with the list below,
+      find the players that made the All-State team,
+      and display a message with the results.
+      Display the message in a div below the table. */
+
 var allStars = [
   {
     first:'Melanie',
@@ -121,3 +124,22 @@ var allStars = [
   school: 'Springfield High School'
   }
 ];
+var confirmedStars = '';
+var allStarsArea = document.getElementById('all-stars'); //get the empty div area
+var allStarsTxt = '';
+
+function findAllStars(starsList, potentialStars) {
+  for (i=0; i<potentialStars.length; i++) {
+    for (j=0; j<starsList.length; j++) {
+      if (potentialStars[i].first === starsList[j].first
+          && potentialStars[i].last === starsList[j].last
+          && potentialStars[i].position === starsList[j].position) {
+            confirmedStars += potentialStars[i].first + ' ' + potentialStars[i].last + '<br>';
+      }
+    }
+  }
+  allStarsTxt += '<strong>Congratulations to Springfield\'s 2018 North Carolina All-State honorees: </strong>' + '<br>' + confirmedStars;
+  allStarsArea.innerHTML = allStarsTxt;
+}
+
+findAllStars(allStars, players);
